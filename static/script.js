@@ -1,3 +1,14 @@
+// Utility function to format time to AM/PM
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  return hours + ':' + minutes + ' ' + ampm;
+}
+
 $(document).ready(function() {
   var map = L.mapbox.map('map', 'vineel.i06b0oh9').setView([42.35, -71.11], 17);
   map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
@@ -34,13 +45,13 @@ $(document).ready(function() {
       var $xml = $(data);
       var prediction = $($xml.find('prediction').first());
 
-      $('#time').html((new Date()).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
+      $('#time').html(formatAMPM(new Date()));
 
       var minutes = parseInt(prediction.attr('minutes'));
       $('#nextmin').html(minutes + ' minute' + (minutes == 1 ? '' : 's'));
 
       var nexttime = parseInt(prediction.attr('epochTime'));
-      $('#nexttime').html((new Date(nexttime)).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
+      $('#nexttime').html(formatAMPM(new Date(nexttime)));
     });
 
     // Plot the shuttle
