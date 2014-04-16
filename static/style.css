@@ -9,3 +9,34 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+.map-legends {
+  max-width: 1000px !important;
+  background-color: black;
+  opacity: 0.7;
+  color: white;
+  padding: 10px;
+}
+
+.my-legend div {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.my-legend .legend-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.my-legend .info {
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+#nexttime {
+  margin-bottom: 20px;
+}
+

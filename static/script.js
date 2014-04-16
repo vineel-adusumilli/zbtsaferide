@@ -34,13 +34,13 @@ $(document).ready(function() {
       var $xml = $(data);
       var prediction = $($xml.find('prediction').first());
 
-      $('#time').html('<h2>' + (new Date()).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3") + '</h2>');
+      $('#time').html((new Date()).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
 
       var minutes = parseInt(prediction.attr('minutes'));
-      $('#nextmin').html('<h2>' + minutes + ' minute' + (minutes == 1 ? '' : 's') + '</h2>');
+      $('#nextmin').html(minutes + ' minute' + (minutes == 1 ? '' : 's'));
 
       var nexttime = parseInt(prediction.attr('epochTime'));
-      $('#nexttime').html('<h2>' + (new Date(nexttime)).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3") + '</h2>');
+      $('#nexttime').html((new Date(nexttime)).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3"));
     });
 
     // Plot the shuttle
