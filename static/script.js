@@ -87,7 +87,7 @@ $(document).ready(function() {
   }
 
   // Function that plots the shuttle and updates the times
-  var oldRoute = null;
+  var oldRoute = undefined;
   function updatePosition() {
     // Check Boston West and then Boston All to see if they're running and update shuttle if so
     var latLng;
@@ -106,7 +106,6 @@ $(document).ready(function() {
     $('#time').text(formatAMPM(new Date()));
 
     if (route !== oldRoute) {
-      console.log("Route changed");
       // Update the route drawing if it's changed
       if (route) {
         drawRoute(route);
@@ -116,12 +115,11 @@ $(document).ready(function() {
         $('.prediction').show();
       } else {
         routeLayer.clearLayers();
-        console.log("Clearing");
         map.setZoom(15);
         map.panTo([42.35, -71.11]);
 
         $('.legend-title').text('Saferide Not Running');
-        $('.prediction').show();
+        $('.prediction').hide();
       }
       oldRoute = route;
     }
