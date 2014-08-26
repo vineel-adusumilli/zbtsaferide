@@ -1,7 +1,7 @@
 zbtsaferide
 ===========
 
-A heads-up display to track the Saferide Boston West shuttle and it's arrival at MIT ZBT. Visible at [http://zbtsaferide.herokuapp.com/].
+A heads-up display to track the Saferide Boston West shuttle and it's arrival at MIT ZBT. Visible at http://zbtsaferide.herokuapp.com/.
 
 License
 -------
