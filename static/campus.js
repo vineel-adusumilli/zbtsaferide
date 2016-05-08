@@ -18,7 +18,7 @@ $(document).ready(function() {
   var shuttle = L.circleMarker([42.35, -71.11], 
       {fill: true, fillOpacity: 1, radius: 30});
   function drawRoute(route) {
-    $.get('http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mit&r=saferideboston' + route, function(data) {
+    $.get('http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mit&r=saferide' + route, function(data) {
       // Reset any markers/paths that were drawn before
       routeLayer.clearLayers();
       var $xml = $(data);
@@ -50,7 +50,7 @@ $(document).ready(function() {
   function getSaferidePosition(route) {
     var latLng = null;
     $.ajax({
-      url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=vehicleLocations&a=mit&t=0&r=saferideboston' + route,
+      url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=vehicleLocations&a=mit&t=0&r=saferide' + route,
       success:
         function(data) {
           var $xml = $(data);
@@ -69,7 +69,7 @@ $(document).ready(function() {
   function getPredictionInfo(route) {
     var predictionInfo = null;
     $.ajax({
-      url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=mit&s=mass84_a&r=saferideboston' + route,
+      url: 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=mit&s=mass84_a&r=saferide' + route,
       success:
         function(data) {
           var $xml = $(data);
@@ -92,12 +92,12 @@ $(document).ready(function() {
     // Check Boston West and then Boston All to see if they're running and update shuttle if so
     var latLng;
     var route = null;
-    if (latLng = getSaferidePosition('w')) {
-      route = 'w';
+    if (latLng = getSaferidePosition('bostonw')) {
+      route = 'bostonw';
       shuttle.setLatLng(latLng);
       map.panTo(latLng, {duration: 4});
-    } else if (latLng = getSaferidePosition('all')) {
-      route = 'all';
+    } else if (latLng = getSaferidePosition('camball')) {
+      route = 'camball';
       shuttle.setLatLng(latLng);
       map.panTo(latLng, {duration: 4});
     }
@@ -111,7 +111,7 @@ $(document).ready(function() {
         drawRoute(route);
         map.setZoom(17);
 
-        $('.legend-title').text('Saferide Boston ' + (route === 'w' ? 'West' : 'All'));
+        $('.legend-title').text('Saferide ' + (route === 'bostonw' ? 'Boston West' : 'Cambridge All'));
         $('.prediction').show();
       } else {
         routeLayer.clearLayers();
